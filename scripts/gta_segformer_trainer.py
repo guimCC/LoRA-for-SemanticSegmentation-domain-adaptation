@@ -80,12 +80,11 @@ epochs = 10
 lr = 0.00006
 batch_size = 10
 
-hub_model_id = "segformer-b0-finetuned-segments-gta5"
+name = "segformer-v0-gta"
 
 training_args = TrainingArguments(
-    "segformer-b0-finetuned-segments-gta5",
-    #output_dir='./segformer_output',
-    overwrite_output_dir=True,
+    name,
+    overwrite_output_dir=False,
     learning_rate=lr,
     num_train_epochs=epochs,
     per_device_train_batch_size=batch_size,
@@ -150,4 +149,4 @@ transformers.logging.set_verbosity_info()
 trainer.train()
 
 # Save the model
-model.save_pretrained('./output')
+model.save_pretrained(f'./{name}')
