@@ -16,6 +16,8 @@ import torch
 from torch import nn
 import evaluate
 
+##################### DATASET #####################
+
 # Load dataset from hugginface
 hf_datasets = load_dataset("guimCC/gta5-cityscapes-labeling")
 
@@ -23,6 +25,44 @@ hf_datasets = load_dataset("guimCC/gta5-cityscapes-labeling")
 train_ds = hf_datasets["train"]
 test_ds = hf_datasets["test"].train_test_split(test_size=0.1)['test']
 val_ds = hf_datasets["validation"].train_test_split(test_size=0.1)['test']
+
+# Alternative way to load the dataset: Load it locally
+
+# from datasets import concatenate_datasets, DatasetDict, load_from_disk
+# import os
+
+# def load_batches(split_name, directory):
+#     batches = []
+#     batch_num = 0
+#     while True:
+#         batch_dir = os.path.join(directory, f"{split_name}_batch_{batch_num}.arrow")
+#         if not os.path.exists(batch_dir):
+#             break
+#         batch_dataset = load_from_disk(batch_dir)
+#         batches.append(batch_dataset)
+#         batch_num += 1
+#     return concatenate_datasets(batches) if batches else None
+
+# # Load each split
+# dataset_path = '../gta_dataset'
+
+# train_dataset = load_batches('train', dataset_path)
+# validation_dataset = load_batches('validation', dataset_path)
+# test_dataset = load_batches('test', dataset_path)
+
+# # Create a DatasetDict
+# hf_datasets = DatasetDict({
+#     'train': train_dataset,
+#     'validation': validation_dataset,
+#     'test': test_dataset
+# })
+
+# train_ds = hf_datasets["train"]
+# test_ds = hf_datasets["test"].train_test_split(test_size=0.1)['test']
+# val_ds = hf_datasets["validation"].train_test_split(test_size=0.1)['test']
+
+##################### IDs and LABELs #####################
+
 
 # Download the label files
 repo_id = "huggingface/label-files"
@@ -65,7 +105,9 @@ train_ds.set_transform(train_transforms)
 test_ds.set_transform(val_transforms)
 val_ds.set_transform(val_transforms)
 
-# Load the base model
+##################### MODEL #####################
+
+# Load the base model <- CHANGE to try with other mit-bX SegFormer models
 pretrained_model_name = "nvidia/mit-b0" 
 model = SegformerForSemanticSegmentation.from_pretrained(
     pretrained_model_name,
@@ -74,7 +116,7 @@ model = SegformerForSemanticSegmentation.from_pretrained(
     label2id=label2id
 )
 
-
+##################### TRAINING #####################
 
 epochs = 10
 lr = 0.00006
