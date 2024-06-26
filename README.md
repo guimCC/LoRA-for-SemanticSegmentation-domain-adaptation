@@ -28,9 +28,9 @@ By combining SegFormer-B0 with the LoRA technique, this project aims to advance 
 - **[gta_segformer_trainer](scripts/gta_segformer_trainer.py):** Trains the **SegFormer-B0** on the **GTA** dataset and stores a checkpoint to the trained model.
 - **[lora_gta_to_cityscapes](scripts/lora_gta_to_cityscapes_clean.py):** Takes a previously pretrained **SegFormer-B0** on **GTA** and performs **LoRA** domain adaptation to a **Cityscapes** dataset.
 - **[evaluation](scripts/Segformer_evaluation.ipynb):** Performs several model evaluations:
-  - Model: **SegFormer-B0** trained on **GTA** - Evaluation Dataset: **GTA**
-  - Model: **SegFormer-B0** trained on **GTA** - Evaluation Dataset: **Cityscapes**
-  - Model: **SegFormer-B0 LORA** trained on first **GTA** and then **Cityscapes** - Evaluation Dataset: **Cityscapes**  
+  - Model: **SegFormer-B0** trained on **GTA** - Evaluation Dataset: **GTA** (mIoU: 36.57%)
+  - Model: **SegFormer-B0** trained on **GTA** - Evaluation Dataset: **Cityscapes** (mIoU: 8.24%)
+  - Model: **SegFormer-B0 LORA** trained on first **GTA** and then **Cityscapes** - Evaluation Dataset: **Cityscapes** (mIoU: 23.39%)
 ### Secondary Scripts
 - **[cityscapes_dataset_creator](useful_scripts/cityscapes_dataset_creator.py):** Given raw data, creates a **Cityscapes** dataset for further use.
 - **[gta_dataset_creator](useful_scripts/gta_dataset_creator.py):** Given raw data, creates a **batched GTA** dataset for further use.
