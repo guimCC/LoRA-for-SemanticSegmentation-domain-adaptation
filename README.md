@@ -35,3 +35,9 @@ By combining SegFormer-B0 with the LoRA technique, this project aims to advance 
 - **[cityscapes_dataset_creator](useful_scripts/cityscapes_dataset_creator.py):** Given raw data, creates a **Cityscapes** dataset for further use.
 - **[gta_dataset_creator](useful_scripts/gta_dataset_creator.py):** Given raw data, creates a **batched GTA** dataset for further use.
 - **[cityscapes_dataset_creator](useful_scripts/cityscapes_dataset_creator.py):** Given a **batched GTA** dataset, loads it for further use.
+
+## Models
+The mentioned models can be found at:
+- **[Segformer pretrained on GTA](https://huggingface.co/guimCC/segformer-v0-gta)**
+- **[Segformer after LoRA to Cityscapes](https://huggingface.co/guimCC/segformer-v0-gta-cityscapes)**
+- **[Demo](https://huggingface.co/spaces/guimCC/LORA_SemanticSegmentation)**: Feel free to check the effect of **LoRA** in real time!
