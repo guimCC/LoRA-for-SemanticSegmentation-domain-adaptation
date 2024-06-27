@@ -4,6 +4,8 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 from datasets import Dataset as HFDataset, DatasetDict
 
+# NOTE: This batched way of creating and loading the dataset has been done because the dataset didn't fit directly on memory. Hence this approach.
+
 class GTADataset(Dataset):
     def __init__(self, image_dir, label_dir, ids_list, transform=None):
         self.image_dir = image_dir
